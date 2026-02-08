@@ -1,0 +1,46 @@
+# Environment variables
+.env
+.env.local
+.env*.local
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build output
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Azure
+.env.production
+PublishSettings.xml
+
+# Testing
+coverage/
+.nyc_output/
+
+# OS
+Thumbs.db

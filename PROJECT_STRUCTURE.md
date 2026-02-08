@@ -57,50 +57,51 @@ energy-adviser/
 
 ### 📋 Configuration & Documentation
 
-| File | Purpose |
-|------|---------|
-| `package.json` | Node.js dependencies, scripts for build & start |
-| `.env.example` | Template for environment variables (OAuth credentials) |
-| `.gitignore` | Excludes node_modules, .env, build files from Git |
-| `web.config` | Configures app to run on Azure App Service |
-| `vite.config.js` | Vite build configuration for Vue.js production build |
-| `index.html` | HTML template for Vue.js application |
+| File             | Purpose                                                |
+| ---------------- | ------------------------------------------------------ |
+| `package.json`   | Node.js dependencies, scripts for build & start        |
+| `.env.example`   | Template for environment variables (OAuth credentials) |
+| `.gitignore`     | Excludes node_modules, .env, build files from Git      |
+| `web.config`     | Configures app to run on Azure App Service             |
+| `vite.config.js` | Vite build configuration for Vue.js production build   |
+| `index.html`     | HTML template for Vue.js application                   |
 
 ### 📚 Documentation
 
-| File | Content |
-|------|---------|
-| `QUICKSTART.md` | ⭐ 5-minute setup guide - start here! |
-| `README.md` | Complete feature list, installation, API docs |
-| `DEPLOYMENT.md` | Step-by-step Azure deployment instructions |
+| File              | Content                                         |
+| ----------------- | ----------------------------------------------- |
+| `QUICKSTART.md`   | ⭐ 5-minute setup guide - start here!           |
+| `README.md`       | Complete feature list, installation, API docs   |
+| `DEPLOYMENT.md`   | Step-by-step Azure deployment instructions      |
 | `ARCHITECTURE.md` | System design, data flows, algorithms explained |
-| `DELIVERABLES.md` | Complete list of what was built |
+| `DELIVERABLES.md` | Complete list of what was built                 |
 
 ### 🔙 Backend Files
 
-| File | Responsibility |
-|------|-----------------|
-| `server.js` | Express app setup, middleware, routing, SPA fallback |
-| `routes/auth.js` | OAuth2 with EnergyID, login/logout, session mgmt |
-| `routes/energy.js` | Fetch energy data from EnergyID API, meter info |
-| `routes/analysis.js` | Endpoints for energy analysis results |
+| File                          | Responsibility                                          |
+| ----------------------------- | ------------------------------------------------------- |
+| `server.js`                   | Express app setup, middleware, routing, SPA fallback    |
+| `routes/auth.js`              | OAuth2 with EnergyID, login/logout, session mgmt        |
+| `routes/energy.js`            | Fetch energy data from EnergyID API, meter info         |
+| `routes/analysis.js`          | Endpoints for energy analysis results                   |
 | `services/analysisService.js` | All analysis algorithms (outliers, peaks, trends, etc.) |
 
 ### 🎨 Frontend Files
 
-| File | Component |
-|------|-----------|
-| `src/main.js` | Bootstrap Vue.js app with router |
-| `src/App.vue` | Root layout (navbar, footer, router outlet) |
-| `src/style.css` | Global styles, responsive design, themes |
-| `src/router/index.js` | Route definitions, auth guards, navigation |
-| `src/views/Dashboard.vue` | Home page (quick stats, recommendations) |
-| `src/views/Analysis.vue` | Detailed analysis (charts, metrics, insights) |
-| `src/views/Unauthorized.vue` | "Login required" page |
+| File                         | Component                                     |
+| ---------------------------- | --------------------------------------------- |
+| `src/main.js`                | Bootstrap Vue.js app with router              |
+| `src/App.vue`                | Root layout (navbar, footer, router outlet)   |
+| `src/style.css`              | Global styles, responsive design, themes      |
+| `src/router/index.js`        | Route definitions, auth guards, navigation    |
+| `src/views/Dashboard.vue`    | Home page (quick stats, recommendations)      |
+| `src/views/Analysis.vue`     | Detailed analysis (charts, metrics, insights) |
+| `src/views/Unauthorized.vue` | "Login required" page                         |
 
 ## Quick Reference
 
 ### To Get Started:
+
 ```bash
 npm install              # Install dependencies
 cp .env.example .env     # Create .env file
@@ -110,12 +111,14 @@ npm start                # Start server on port 3000
 ```
 
 ### To Deploy:
+
 ```bash
 npm run build:all        # Build everything
 # Follow DEPLOYMENT.md for Azure setup
 ```
 
 ### Project Statistics
+
 - **Backend Lines**: ~500 (3 route files, 1 service)
 - **Frontend Lines**: ~1200 (3 Vue components + CSS)
 - **Total Dependencies**: 13 production + 4 dev
@@ -166,6 +169,7 @@ Database:     None (real-time analysis)
 ## Troubleshooting
 
 Most common issues:
+
 - **OAuth fails**: Check Client ID/Secret in .env
 - **No data**: Verify EnergyID account has active meters
 - **Build fails**: Ensure Node.js 18+ installed

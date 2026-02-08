@@ -53,22 +53,24 @@ Application runs at: **http://localhost:3000**
 
 ## ✅ Detailed Documentation (Read as Needed)
 
-| Document | Read When |
-|----------|-----------|
-| `QUICKSTART.md` | Want faster overview |
-| `README.md` | Need installation help |
+| Document               | Read When                         |
+| ---------------------- | --------------------------------- |
+| `QUICKSTART.md`        | Want faster overview              |
+| `README.md`            | Need installation help            |
 | `PROJECT_STRUCTURE.md` | Want to understand file structure |
-| `ARCHITECTURE.md` | Want to understand system design |
-| `DEPLOYMENT.md` | Ready to deploy to Azure |
+| `ARCHITECTURE.md`      | Want to understand system design  |
+| `DEPLOYMENT.md`        | Ready to deploy to Azure          |
 
 ## ✅ Deploy to Azure (20 minutes)
 
 ### Step 1: Prepare Build
+
 ```bash
 npm run build:all
 ```
 
 ### Step 2: Create Azure Resources
+
 ```bash
 # Install Azure CLI from https://docs.microsoft.com/cli/azure/
 az login
@@ -91,6 +93,7 @@ az webapp create \
 ```
 
 ### Step 3: Configure Settings
+
 ```bash
 az webapp config appsettings set \
   --resource-group energy-adviser-rg \
@@ -104,6 +107,7 @@ az webapp config appsettings set \
 ```
 
 ### Step 4: Deploy
+
 ```bash
 # Create deployment package
 Compress-Archive -Path .\* -DestinationPath deployment.zip `
@@ -117,30 +121,39 @@ az webapp deployment source config-zip \
 ```
 
 ### Step 5: Go Live
+
 Visit: **https://energy-adviser-app.azurewebsites.net**
 
 ## ✅ Troubleshooting
 
 ### Problem: npm install fails
+
 **Solution**: Ensure Node.js 18+ is installed
+
 ```bash
 node --version  # Should show v18.x.x or higher
 ```
 
 ### Problem: OAuth login doesn't work
+
 **Solution**: Check credentials in .env file
+
 - Verify Client ID and Secret are correct
 - Check EnergyID callback URL matches exactly
 - Ensure OAuth app is properly registered
 
 ### Problem: No energy data appears
+
 **Solution**: Check EnergyID account
+
 - Verify account has active energy meters
 - Check that OAuth permissions were granted
 - Wait a moment as API might be loading
 
 ### Problem: Port 3000 already in use
+
 **Solution**: Use different port
+
 ```bash
 # PowerShell
 $env:PORT=3001
@@ -148,7 +161,9 @@ npm start
 ```
 
 ### Problem: Build produces errors
+
 **Solution**: Clean and rebuild
+
 ```bash
 # Remove node_modules and reinstall
 rm -r node_modules
@@ -260,6 +275,7 @@ You'll know it's working when:
 ## 🎉 You're Ready!
 
 Follow the checklist steps above and you'll have:
+
 - ✅ Working local application
 - ✅ Full energy analysis
 - ✅ Beautiful dashboard
@@ -267,7 +283,8 @@ Follow the checklist steps above and you'll have:
 
 **Estimated Total Time**: 30-45 minutes (including reading docs)
 
-**Estimated Cost**: 
+**Estimated Cost**:
+
 - Local development: FREE
 - Azure deployment: $13-15/month (B1 plan)
 

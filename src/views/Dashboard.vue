@@ -250,8 +250,8 @@ export default defineComponent({
 .hero {
   background: linear-gradient(
     135deg,
-    rgba(102, 126, 234, 0.9) 0%,
-    rgba(118, 75, 162, 0.9) 100%
+    rgba(39, 174, 96, 0.9) 0%,
+    rgba(52, 152, 219, 0.9) 100%
   );
   color: white;
   padding: 4rem 2rem;
@@ -303,7 +303,7 @@ export default defineComponent({
   padding: 1rem;
   background: #f9f9f9;
   border-radius: 4px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #27ae60;
 }
 
 .stats-grid h4 {
@@ -315,7 +315,7 @@ export default defineComponent({
 .large-number {
   font-size: 2rem;
   font-weight: bold;
-  color: #667eea;
+  color: #27ae60;
   margin: 0;
 }
 
@@ -328,7 +328,7 @@ export default defineComponent({
 .recommendation-item {
   padding: 1rem;
   background: #f9f9f9;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #27ae60;
   border-radius: 4px;
 }
 
@@ -353,17 +353,17 @@ export default defineComponent({
 }
 
 .priority-high {
-  background: #ff6b6b;
+  background: #e74c3c;
   color: white;
 }
 
 .priority-medium {
-  background: #ffc107;
+  background: #f39c12;
   color: white;
 }
 
 .priority-low {
-  background: #28a745;
+  background: #27ae60;
   color: white;
 }
 

@@ -80,7 +80,7 @@ export default defineComponent({
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
 }
 
 .navbar {
@@ -107,8 +107,8 @@ export default defineComponent({
 
 .demo-badge {
   display: inline-block;
-  background: #ffc107;
-  color: #333;
+  background: #f39c12;
+  color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -151,7 +151,7 @@ export default defineComponent({
 }
 
 .btn-login {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
   padding: 0.7rem 1.5rem;
   font-weight: bold;
 }

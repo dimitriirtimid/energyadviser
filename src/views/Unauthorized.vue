@@ -115,7 +115,7 @@ export default defineComponent({
 .btn-link {
   background: none;
   border: none;
-  color: #667eea;
+  color: #27ae60;
   text-decoration: underline;
   cursor: pointer;
   padding: 0;

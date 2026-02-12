@@ -377,7 +377,7 @@ export default defineComponent({
 .peak-stat .value {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #667eea;
+  color: #27ae60;
 }
 
 .peak-stat .value.positive {
@@ -415,14 +415,14 @@ export default defineComponent({
 
 .bar {
   width: 80%;
-  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(180deg, #27ae60 0%, #229954 100%);
   border-radius: 4px 4px 0 0;
   min-height: 5px;
   transition: all 0.3s ease;
 }
 
 .bar.active {
-  background: linear-gradient(180deg, #ff6b6b 0%, #ff5252 100%);
+  background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%);
 }
 
 .bar:hover {
@@ -457,7 +457,7 @@ export default defineComponent({
 .big-number {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #667eea;
+  color: #27ae60;
   margin: 0;
 }
 
@@ -469,7 +469,7 @@ export default defineComponent({
 .outlier-item {
   padding: 1rem;
   background: #f9f9f9;
-  border-left: 4px solid #ff6b6b;
+  border-left: 4px solid #e74c3c;
   border-radius: 4px;
   margin-bottom: 0.5rem;
 }
@@ -496,12 +496,12 @@ export default defineComponent({
 }
 
 .severity-high {
-  background: #ff6b6b;
+  background: #e74c3c;
   color: white;
 }
 
 .severity-medium {
-  background: #ffc107;
+  background: #f39c12;
   color: white;
 }
 

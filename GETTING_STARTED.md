@@ -1,12 +1,14 @@
 # Getting Started Checklist
 
-## ✅ Pre-Requisites (5 minutes)
+## ✅ Pre-Requisites (5 minutes) - Optional for Demo Mode
 
 - [ ] Install Node.js 18+ from https://nodejs.org/
 - [ ] Verify installation: `node --version` and `npm --version`
-- [ ] Register for EnergyID account at https://energyid.eu/
-- [ ] Create OAuth application at https://oauth.energyid.eu/
-- [ ] Note down Client ID and Client Secret
+- [ ] (Optional) Register for EnergyID account at https://energyid.eu/
+- [ ] (Optional) Create OAuth application at https://oauth.energyid.eu/
+- [ ] (Optional) Note down Client ID and Client Secret
+
+**Or** just use Demo Mode (no registration needed!):
 
 ## ✅ Local Setup (10 minutes)
 
@@ -45,11 +47,22 @@ Application runs at: **http://localhost:3000**
 
 ## ✅ Test Application (5 minutes)
 
+### Option 1: Use Demo Mode (Fastest!)
+
 1. Open http://localhost:3000 in browser
-2. Click "Login with EnergyID"
+2. Click "Demo-modus proberen"
+3. Instantly view dashboard with sample data
+4. No OAuth, no external connections needed
+
+### Option 2: Use Real OAuth
+
+1. Open http://localhost:3000 in browser
+2. DEMO_MODE_QUICKSTART.md`| Want to try demo without OAuth |
+|`DEMO_MODE.md`        | Want full demo mode docs          |
+|`Click "Inloggen met EnergyID"
 3. Grant permission to Energy Adviser
 4. View Dashboard with your energy data
-5. Click "Analysis" for detailed insights
+5. Click "Analyse" for detailed insights
 
 ## ✅ Detailed Documentation (Read as Needed)
 

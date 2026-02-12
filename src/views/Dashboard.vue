@@ -1,10 +1,8 @@
 <template>
   <div class="dashboard">
     <div class="hero">
-      <h1>Welcome to Energy Adviser</h1>
-      <p>
-        Analyze your energy consumption and get personalized recommendations
-      </p>
+      <h1>Welkom bij Endura energieadviseur</h1>
+      <p>Analyseer uw energieverbruik en ontvang persoonlijke aanbevelingen</p>
     </div>
 
     <div class="auth-section" v-if="!isAuthenticated">
@@ -14,39 +12,54 @@
           Connect your EnergyID account to start analyzing your energy
           consumption.
         </p>
-        <a href="/api/auth/login" class="btn btn-primary"
-          >Login with EnergyID</a
-        >
+        <div class="button-group">
+          <a href="/api/auth/login" class="btn btn-primary"
+            >Login with EnergyID22</a
+          >
+          <button
+            @click="demoLogin"
+            class="btn btn-secondary"
+            <!--
+            :disabled="demoLoading"
+            --
+          >
+            >
+            {{ demoLoading ? "Loading Demo..." : "Try Demo Mode" }}
+          </button>
+        </div>
+        <p v-if="demoMessage" :class="['demo-message', demoMessageType]">
+          {{ demoMessage }}
+        </p>
       </div>
     </div>
 
     <div v-else class="content-section">
       <div class="grid">
         <div class="stat-box">
-          <div class="stat-box-label">Today's Consumption</div>
+          <div class="stat-box-label">Verbruik vandaag</div>
           <div class="stat-box-value">{{ todayConsumption }} kWh</div>
         </div>
         <div class="stat-box">
-          <div class="stat-box-label">Average Daily</div>
+          <div class="stat-box-label">Gemiddeld per dag</div>
           <div class="stat-box-value">{{ averageConsumption }} kWh</div>
         </div>
         <div class="stat-box">
-          <div class="stat-box-label">Peak Time</div>
+          <div class="stat-box-label">Piekmomenten</div>
           <div class="stat-box-value">{{ peakTime }}</div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <h3>Quick Stats</h3>
+          <h3>Snelle statistieken</h3>
           <select
             v-model="selectedDays"
             class="period-selector"
             @change="loadData"
           >
-            <option value="7">Last 7 days</option>
-            <option value="30">Last 30 days</option>
-            <option value="90">Last 90 days</option>
+            <option value="7">Afgelopen 7 dagen</option>
+            <option value="30">Afgelopen 30 dagen</option>
+            <option value="90">Afgelopen 90 dagen</option>
           </select>
         </div>
 
@@ -60,26 +73,26 @@
 
         <div v-else class="stats-grid">
           <div>
-            <h4>Total Consumption</h4>
+            <h4>Totaal verbruik</h4>
             <p class="large-number">{{ summary.totalConsumption }} kWh</p>
           </div>
           <div>
-            <h4>Average per Day</h4>
+            <h4>Gemiddeld per dag</h4>
             <p class="large-number">{{ summary.averageConsumption }} kWh</p>
           </div>
           <div>
-            <h4>Minimum Usage</h4>
+            <h4>Minimum verbruik</h4>
             <p class="large-number">{{ summary.minConsumption }} kWh</p>
           </div>
           <div>
-            <h4>Maximum Usage</h4>
+            <h4>Maximum verbruik</h4>
             <p class="large-number">{{ summary.maxConsumption }} kWh</p>
           </div>
         </div>
       </div>
 
       <div v-if="recommendations.length > 0" class="card">
-        <h3>Recommendations for You</h3>
+        <h3>Aanbevelingen voor u</h3>
         <div class="recommendation-list">
           <div
             v-for="rec in recommendations"
@@ -99,9 +112,9 @@
       </div>
 
       <div class="card">
-        <h3>Detailed Analysis</h3>
+        <h3>Gedetailleerde analyse</h3>
         <router-link to="/analysis" class="btn btn-primary"
-          >Go to Analysis Dashboard</router-link
+          >Ga naar analysedashboard</router-link
         >
       </div>
     </div>
@@ -119,6 +132,9 @@ export default defineComponent({
       isAuthenticated: false,
       loading: false,
       error: null,
+      demoLoading: false,
+      demoMessage: "",
+      demoMessageType: "info",
       selectedDays: 7,
       todayConsumption: 0,
       averageConsumption: 0,
@@ -144,6 +160,27 @@ export default defineComponent({
         this.isAuthenticated = false;
       }
     },
+    async demoLogin() {
+      this.demoLoading = true;
+      this.demoMessage = "";
+      try {
+        const response = await axios.get("/api/auth/demo-login");
+        if (response.data.success) {
+          this.demoMessage = "✅ Demo login successful! Refreshing...";
+          this.demoMessageType = "success";
+          // Refresh the page to update authentication
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }
+      } catch (error) {
+        console.error("Demo login error:", error);
+        this.demoMessage =
+          "❌ Demo mode is not available. Please try the regular login.";
+        this.demoMessageType = "error";
+        this.demoLoading = false;
+      }
+    },
     async loadData() {
       this.loading = true;
       this.error = null;
@@ -155,7 +192,8 @@ export default defineComponent({
         const data = consumptionResponse.data.data;
 
         if (!data || data.length === 0) {
-          this.error = "No data available. Please check your EnergyID account.";
+          this.error =
+            "Geen gegevens beschikbaar. Controleer uw EnergyID-account.";
           this.loading = false;
           return;
         }
@@ -192,7 +230,7 @@ export default defineComponent({
           .toFixed(2);
       } catch (error) {
         console.error("Load data error:", error);
-        this.error = "Failed to load energy data. Please try again.";
+        this.error = "Kan energiegegevens niet laden. Probeer het opnieuw.";
       } finally {
         this.loading = false;
       }
@@ -338,5 +376,47 @@ export default defineComponent({
   margin-top: 0.5rem;
   font-style: italic;
   color: #666;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.button-group .btn {
+  flex: 1;
+  min-width: 150px;
+}
+
+.demo-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.demo-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.demo-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.demo-message.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 </style>

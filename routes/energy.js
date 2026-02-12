@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const demoMode = require("../services/demoMode");
 
 // Middleware to check authentication
 const requireAuth = (req, res, next) => {
@@ -20,11 +21,31 @@ const energyIDClient = axios.create({
 router.get("/consumption", requireAuth, async (req, res) => {
   try {
     const { days = 30 } = req.query;
+
+    // Use demo data if in demo mode
+    if (req.user.isDemoMode) {
+      const data = demoMode.getSampleConsumptionData(days);
+      const endDate = new Date();
+      const startDate = new Date();
+      startDate.setDate(startDate.getDate() - days);
+
+      return res.json({
+        success: true,
+        data: data,
+        period: {
+          start: startDate,
+          end: endDate,
+          days,
+        },
+        isDemoData: true,
+      });
+    }
+
+    // Fetch from real API
     const endDate = new Date();
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
 
-    // Fetch interval data from EnergyID
     const response = await energyIDClient.get("/interval-data", {
       headers: {
         Authorization: `Bearer ${req.user.accessToken}`,
@@ -57,6 +78,20 @@ router.get("/consumption", requireAuth, async (req, res) => {
 // Get today's consumption
 router.get("/today", requireAuth, async (req, res) => {
   try {
+    // Use demo data if in demo mode
+    if (req.user.isDemoMode) {
+      const data = demoMode.getSampleTodayConsumption();
+      const today = new Date().toISOString().split("T")[0];
+
+      return res.json({
+        success: true,
+        data: data,
+        date: today,
+        isDemoData: true,
+      });
+    }
+
+    // Fetch from real API
     const today = new Date().toISOString().split("T")[0];
 
     const response = await energyIDClient.get("/interval-data", {
@@ -88,6 +123,18 @@ router.get("/today", requireAuth, async (req, res) => {
 // Get meter information
 router.get("/meters", requireAuth, async (req, res) => {
   try {
+    // Use demo data if in demo mode
+    if (req.user.isDemoMode) {
+      const meters = demoMode.getSampleMeters();
+
+      return res.json({
+        success: true,
+        meters: meters,
+        isDemoData: true,
+      });
+    }
+
+    // Fetch from real API
     const response = await energyIDClient.get("/meters", {
       headers: {
         Authorization: `Bearer ${req.user.accessToken}`,

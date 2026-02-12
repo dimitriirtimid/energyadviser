@@ -1,18 +1,20 @@
 <template>
   <div class="analysis">
-    <h1>Energy Analysis</h1>
+    <h1>Energieanalyse</h1>
 
     <div class="controls">
       <div>
-        <label for="days">Select Period:</label>
+        <label for="days">Selecteer periode:</label>
         <select id="days" v-model="selectedDays" @change="loadData">
-          <option value="7">Last 7 days</option>
-          <option value="30">Last 30 days</option>
-          <option value="90">Last 90 days</option>
+          <option value="7">Afgelopen 7 dagen</option>
+          <option value="30">Afgelopen 30 dagen</option>
+          <option value="90">Afgelopen 90 dagen</option>
         </select>
       </div>
       <div>
-        <button @click="loadData" class="btn btn-primary">Refresh Data</button>
+        <button @click="loadData" class="btn btn-primary">
+          Gegevens vernieuwen
+        </button>
       </div>
     </div>
 
@@ -28,30 +30,30 @@
       <!-- Peak Hours Analysis -->
       <div class="card">
         <div class="card-header">
-          <h2>Peak Consumption Hours</h2>
+          <h2>Piekmomenten verbruik</h2>
         </div>
         <div v-if="analysis.peakHours" class="peak-info">
           <div class="peak-stat">
-            <span class="label">Peak Time Range</span>
+            <span class="label">Piektijdstip</span>
             <span class="value"
               >{{ analysis.peakHours.peakStartHour }}:00 -
               {{ analysis.peakHours.peakEndHour }}:00</span
             >
           </div>
           <div class="peak-stat">
-            <span class="label">Peak Consumption</span>
+            <span class="label">Piekverbruik</span>
             <span class="value"
               >{{ analysis.peakHours.peakConsumption }} kWh</span
             >
           </div>
           <div class="peak-stat">
-            <span class="label">Average Consumption</span>
+            <span class="label">Gemiddeld verbruik</span>
             <span class="value"
               >{{ analysis.peakHours.averageConsumption }} kWh</span
             >
           </div>
           <div class="peak-stat">
-            <span class="label">Difference</span>
+            <span class="label">Verschil</span>
             <span class="value positive">
               +{{
                 (
@@ -65,7 +67,7 @@
           </div>
         </div>
 
-        <h3 style="margin-top: 1.5rem">Hourly Breakdown</h3>
+        <h3 style="margin-top: 1.5rem">Uursplitsing</h3>
         <div class="hourly-chart">
           <div
             v-for="hour in analysis.peakHours.hourlyBreakdown"
@@ -91,7 +93,7 @@
       <!-- Night Consumption Analysis -->
       <div class="card">
         <div class="card-header">
-          <h2>Night & Idle Consumption</h2>
+          <h2>Nacht- en rustverbruik</h2>
         </div>
         <div v-if="analysis.nightConsumption" class="night-info">
           <div
@@ -107,25 +109,25 @@
 
           <div class="consumption-grid">
             <div>
-              <h4>Night (00:00 - 06:00)</h4>
+              <h4>Nacht (00:00 - 06:00)</h4>
               <p class="big-number">
                 {{ analysis.nightConsumption.nightConsumption }} kWh
               </p>
             </div>
             <div>
-              <h4>Day (06:00 - 18:00)</h4>
+              <h4>Dag (06:00 - 18:00)</h4>
               <p class="big-number">
                 {{ analysis.nightConsumption.dayConsumption }} kWh
               </p>
             </div>
             <div>
-              <h4>Evening (19:00 - 23:00)</h4>
+              <h4>Avond (19:00 - 23:00)</h4>
               <p class="big-number">
                 {{ analysis.nightConsumption.eveningConsumption }} kWh
               </p>
             </div>
             <div>
-              <h4>Night as % of Day</h4>
+              <h4>Nacht als % van dag</h4>
               <p class="big-number">
                 {{ analysis.nightConsumption.nightPercentage }}%
               </p>
@@ -137,7 +139,7 @@
       <!-- Outliers Detection -->
       <div class="card">
         <div class="card-header">
-          <h2>Anomalies Detected</h2>
+          <h2>Gedetecteerde afwijkingen</h2>
           <span
             v-if="analysis.outliers.length > 0"
             class="badge badge-danger"
@@ -146,7 +148,9 @@
         </div>
 
         <div v-if="analysis.outliers.length === 0" class="empty-state">
-          <p>✓ No anomalies detected. Your consumption looks normal!</p>
+          <p>
+            ✓ Geen afwijkingen gedetecteerd. Uw verbruik ziet er normaal uit!
+          </p>
         </div>
 
         <div v-else class="outliers-list">
@@ -163,11 +167,10 @@
             </div>
             <div class="outlier-details">
               <span
-                >Consumption:
-                <strong>{{ outlier.consumption }} kWh</strong></span
+                >Verbruik: <strong>{{ outlier.consumption }} kWh</strong></span
               >
               <span
-                >Deviation: <strong>{{ outlier.deviation }}%</strong></span
+                >Afwijking: <strong>{{ outlier.deviation }}%</strong></span
               >
             </div>
           </div>
@@ -177,19 +180,19 @@
       <!-- Trends Analysis -->
       <div class="card">
         <div class="card-header">
-          <h2>Consumption Trends</h2>
+          <h2>Verbruikstrends</h2>
         </div>
 
         <div v-if="analysis.trends" class="trends-info">
           <div class="trend-indicator">
-            <span class="label">Overall Trend</span>
+            <span class="label">Algehele trend</span>
             <span :class="['trend-badge', `trend-${analysis.trends.trend}`]">
               {{ analysis.trends.trend.toUpperCase() }}
             </span>
           </div>
 
           <div v-if="analysis.trends.trend !== 'stable'" class="trend-change">
-            <span class="label">Change</span>
+            <span class="label">Verandering</span>
             <span
               :class="{
                 positive: analysis.trends.percentageChange > 0,
@@ -203,11 +206,11 @@
 
           <div class="trend-comparison">
             <div>
-              <h4>First Half Average</h4>
+              <h4>Eerste helft gemiddelde</h4>
               <p class="big-number">{{ analysis.trends.firstHalf }} kWh</p>
             </div>
             <div>
-              <h4>Second Half Average</h4>
+              <h4>Tweede helft gemiddelde</h4>
               <p class="big-number">{{ analysis.trends.secondHalf }} kWh</p>
             </div>
           </div>
@@ -217,7 +220,7 @@
       <!-- Recommendations -->
       <div v-if="analysis.recommendations.length > 0" class="card">
         <div class="card-header">
-          <h2>Personalized Recommendations</h2>
+          <h2>Persoonlijke aanbevelingen</h2>
         </div>
 
         <div class="recommendations">

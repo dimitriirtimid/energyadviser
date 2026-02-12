@@ -3,18 +3,19 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <h1>⚡ Energy Adviser</h1>
+          <h1>⚡ Endura energieadviseur</h1>
+          <span v-if="isDemoMode" class="demo-badge">Demo-modus</span>
         </div>
         <div class="navbar-menu">
           <router-link to="/">Dashboard</router-link>
           <router-link v-if="isAuthenticated" to="/analysis"
-            >Analysis</router-link
+            >Analyse</router-link
           >
           <button v-if="isAuthenticated" @click="logout" class="btn-logout">
-            Logout
+            Uitloggen
           </button>
           <a v-else href="/api/auth/login" class="btn-login"
-            >Login with EnergyID</a
+            >Inloggen met EnergyID</a
           >
         </div>
       </div>
@@ -26,8 +27,8 @@
 
     <footer class="footer">
       <p>
-        &copy; 2026 Energy Adviser. Helping you understand and reduce energy
-        consumption.
+        &copy; 2026 Endura energieadviseur. Helpen u uw energieverbruik beter te
+        begrijpen en te verminderen.
       </p>
     </footer>
   </div>
@@ -42,6 +43,7 @@ export default defineComponent({
   data() {
     return {
       isAuthenticated: false,
+      isDemoMode: false,
     };
   },
   methods: {
@@ -49,8 +51,10 @@ export default defineComponent({
       try {
         const response = await axios.get("/api/auth/status");
         this.isAuthenticated = response.data.authenticated;
+        this.isDemoMode = response.data.isDemoMode || false;
       } catch (error) {
         this.isAuthenticated = false;
+        this.isDemoMode = false;
       }
     },
     async logout() {
@@ -96,6 +100,31 @@ export default defineComponent({
   margin: 0;
   font-size: 1.8rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.demo-badge {
+  display: inline-block;
+  background: #ffc107;
+  color: #333;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .navbar-menu {

@@ -1,0 +1,324 @@
+{
+  "meters": [
+    {
+      "id": "meter-001",
+      "name": "Main Electricity Meter",
+      "type": "electricity",
+      "unit": "kWh",
+      "installationDate": "2022-01-15",
+      "active": true
+    },
+    {
+      "id": "meter-002",
+      "name": "Gas Meter",
+      "type": "gas",
+      "unit": "m³",
+      "installationDate": "2022-01-15",
+      "active": true
+    }
+  ],
+  "consumptionData": [
+    {
+      "timestamp": "2026-02-10T00:00:00Z",
+      "consumption": 0.85,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T01:00:00Z",
+      "consumption": 0.72,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T02:00:00Z",
+      "consumption": 0.68,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T03:00:00Z",
+      "consumption": 0.65,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T04:00:00Z",
+      "consumption": 0.62,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T05:00:00Z",
+      "consumption": 0.7,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T06:00:00Z",
+      "consumption": 1.15,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T07:00:00Z",
+      "consumption": 1.82,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T08:00:00Z",
+      "consumption": 2.15,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T09:00:00Z",
+      "consumption": 1.95,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T10:00:00Z",
+      "consumption": 1.45,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T11:00:00Z",
+      "consumption": 1.35,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T12:00:00Z",
+      "consumption": 1.55,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T13:00:00Z",
+      "consumption": 1.42,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T14:00:00Z",
+      "consumption": 1.38,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T15:00:00Z",
+      "consumption": 1.6,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T16:00:00Z",
+      "consumption": 1.75,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T17:00:00Z",
+      "consumption": 2.05,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T18:00:00Z",
+      "consumption": 2.35,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T19:00:00Z",
+      "consumption": 2.45,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T20:00:00Z",
+      "consumption": 2.15,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T21:00:00Z",
+      "consumption": 1.85,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T22:00:00Z",
+      "consumption": 1.45,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-10T23:00:00Z",
+      "consumption": 1.05,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T00:00:00Z",
+      "consumption": 0.88,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T01:00:00Z",
+      "consumption": 0.75,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T02:00:00Z",
+      "consumption": 0.7,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T03:00:00Z",
+      "consumption": 0.68,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T04:00:00Z",
+      "consumption": 0.65,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T05:00:00Z",
+      "consumption": 0.72,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T06:00:00Z",
+      "consumption": 1.12,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T07:00:00Z",
+      "consumption": 1.88,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T08:00:00Z",
+      "consumption": 2.22,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T09:00:00Z",
+      "consumption": 1.98,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T10:00:00Z",
+      "consumption": 1.52,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T11:00:00Z",
+      "consumption": 1.32,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T12:00:00Z",
+      "consumption": 1.58,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T13:00:00Z",
+      "consumption": 1.48,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T14:00:00Z",
+      "consumption": 1.45,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T15:00:00Z",
+      "consumption": 1.65,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T16:00:00Z",
+      "consumption": 1.82,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T17:00:00Z",
+      "consumption": 2.12,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T18:00:00Z",
+      "consumption": 2.42,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T19:00:00Z",
+      "consumption": 2.52,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T20:00:00Z",
+      "consumption": 2.22,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T21:00:00Z",
+      "consumption": 1.92,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T22:00:00Z",
+      "consumption": 1.52,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-11T23:00:00Z",
+      "consumption": 1.12,
+      "meterId": "meter-001"
+    }
+  ],
+  "todayConsumption": [
+    {
+      "timestamp": "2026-02-12T00:00:00Z",
+      "consumption": 0.9,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T01:00:00Z",
+      "consumption": 0.78,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T02:00:00Z",
+      "consumption": 0.72,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T03:00:00Z",
+      "consumption": 0.7,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T04:00:00Z",
+      "consumption": 0.68,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T05:00:00Z",
+      "consumption": 0.75,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T06:00:00Z",
+      "consumption": 1.18,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T07:00:00Z",
+      "consumption": 1.95,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T08:00:00Z",
+      "consumption": 2.28,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T09:00:00Z",
+      "consumption": 2.05,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T10:00:00Z",
+      "consumption": 1.58,
+      "meterId": "meter-001"
+    },
+    {
+      "timestamp": "2026-02-12T11:00:00Z",
+      "consumption": 1.38,
+      "meterId": "meter-001"
+    }
+  ]
+}

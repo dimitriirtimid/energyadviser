@@ -4,6 +4,7 @@ const passport = require("passport");
 const OAuth2Strategy = require("passport-oauth2");
 const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
+const demoMode = require("../services/demoMode");
 
 // Configure EnergyID OAuth2 strategy
 let energyIDStrategy = new OAuth2Strategy(
@@ -46,6 +47,32 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+// Demo login route
+router.get("/demo-login", (req, res) => {
+  if (!demoMode.isDemoModeEnabled()) {
+    return res
+      .status(403)
+      .json({ error: "Demo mode is not enabled. Set DEMO_MODE=true" });
+  }
+
+  const demoUser = demoMode.getDemoUser();
+  req.login(demoUser, (err) => {
+    if (err) {
+      return res.status(500).json({ error: "Demo login failed" });
+    }
+    res.json({
+      success: true,
+      message: "Demo login successful",
+      user: {
+        id: demoUser.id,
+        email: demoUser.email,
+        name: demoUser.name,
+        isDemoMode: true,
+      },
+    });
+  });
+});
+
 // OAuth login route
 router.get(
   "/login",
@@ -75,6 +102,9 @@ router.get("/user", (req, res) => {
   res.json({
     id: req.user.id,
     authenticated: true,
+    isDemoMode: req.user.isDemoMode || false,
+    email: req.user.email,
+    name: req.user.name,
     tokenExpiry: req.user.timestamp,
   });
 });
@@ -94,13 +124,23 @@ router.get("/logout", (req, res) => {
 router.get("/status", (req, res) => {
   res.json({
     authenticated: !!req.user,
+    isDemoMode: req.user?.isDemoMode || false,
+    demoModeAvailable: demoMode.isDemoModeEnabled(),
     user: req.user
       ? {
           id: req.user.id,
+          email: req.user.email,
+          name: req.user.name,
+          isDemoMode: req.user.isDemoMode || false,
           timestamp: req.user.timestamp,
         }
       : null,
   });
+});
+
+// Get demo mode status (no auth required)
+router.get("/demo-status", (req, res) => {
+  res.json(demoMode.getStatus());
 });
 
 module.exports = router;

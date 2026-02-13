@@ -14,7 +14,7 @@
         </p>
         <div class="button-group">
           <a href="/api/auth/login" class="btn btn-primary"
-            >Login with EnergyID22</a
+            >Login with EnergyID</a
           >
           <button
             @click="demoLogin"

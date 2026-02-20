@@ -4,7 +4,7 @@ Use this checklist to quickly set up and verify demo mode is working.
 
 ## ✅ Pre-Setup
 
-- [ ] Node.js 18+ is installed
+- [ ] Node.js 20+ is installed
 - [ ] Project dependencies are installed (`npm install`)
 - [ ] You are in the project root directory
 

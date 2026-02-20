@@ -65,7 +65,7 @@ endura-energieadviseur/
 
 ### Vereisten
 
-- Node.js 18.0.0 of hoger
+- Node.js 20.0.0 of hoger
 - npm- of yarn-pakketbeheerder
 - EnergyID OAuth2-gegevens (van https://oauth.energyid.eu) - optioneel; demo-modus beschikbaar
 

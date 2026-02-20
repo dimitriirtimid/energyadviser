@@ -4,7 +4,7 @@ Get Energy Adviser up and running in 5 minutes.
 
 ## Prerequisites
 
-- Node.js 18+ ([Download](https://nodejs.org/))
+- Node.js 20+ ([Download](https://nodejs.org/))
 - npm (comes with Node.js)
 - Git ([Download](https://git-scm.com/))
 

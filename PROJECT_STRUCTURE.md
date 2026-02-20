@@ -172,7 +172,7 @@ Most common issues:
 
 - **OAuth fails**: Check Client ID/Secret in .env
 - **No data**: Verify EnergyID account has active meters
-- **Build fails**: Ensure Node.js 18+ installed
+- **Build fails**: Ensure Node.js 20+ installed
 - **Port 3000 busy**: Change PORT in .env
 
 See QUICKSTART.md and DEPLOYMENT.md for more help.

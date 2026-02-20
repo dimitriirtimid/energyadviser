@@ -2,7 +2,7 @@
 
 ## ✅ Pre-Requisites (5 minutes) - Optional for Demo Mode
 
-- [ ] Install Node.js 18+ from https://nodejs.org/
+- [ ] Install Node.js 20+ from https://nodejs.org/
 - [ ] Verify installation: `node --version` and `npm --version`
 - [ ] (Optional) Register for EnergyID account at https://energyid.eu/
 - [ ] (Optional) Create OAuth application at https://oauth.energyid.eu/
@@ -141,7 +141,7 @@ Visit: **https://energy-adviser-app.azurewebsites.net**
 
 ### Problem: npm install fails
 
-**Solution**: Ensure Node.js 18+ is installed
+**Solution**: Ensure Node.js 20+ is installed
 
 ```bash
 node --version  # Should show v18.x.x or higher

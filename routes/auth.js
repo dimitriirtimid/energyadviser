@@ -6,38 +6,49 @@ const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
 const demoMode = require("../services/demoMode");
 
-// Configure EnergyID OAuth2 strategy
-let energyIDStrategy = new OAuth2Strategy(
-  {
-    authorizationURL:
-      process.env.ENERGYID_AUTH_URL ||
-      "https://oauth.energyid.eu/oauth/authorize",
-    tokenURL:
-      process.env.ENERGYID_TOKEN_URL || "https://oauth.energyid.eu/oauth/token",
-    clientID: process.env.ENERGYID_CLIENT_ID,
-    clientSecret: process.env.ENERGYID_CLIENT_SECRET,
-    callbackURL:
-      process.env.ENERGYID_CALLBACK_URL ||
-      "http://localhost:3000/api/auth/callback",
-    state: true,
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    try {
-      const user = {
-        id: uuidv4(),
-        accessToken,
-        refreshToken,
-        profile,
-        timestamp: new Date(),
-      };
-      return done(null, user);
-    } catch (error) {
-      return done(error);
-    }
-  },
-);
+// Configure EnergyID OAuth2 strategy only if credentials are provided
+let energyIDStrategy;
+const hasCredentials =
+  process.env.ENERGYID_CLIENT_ID && process.env.ENERGYID_CLIENT_SECRET;
 
-passport.use("energyid", energyIDStrategy);
+if (hasCredentials) {
+  energyIDStrategy = new OAuth2Strategy(
+    {
+      authorizationURL:
+        process.env.ENERGYID_AUTH_URL ||
+        "https://oauth.energyid.eu/oauth/authorize",
+      tokenURL:
+        process.env.ENERGYID_TOKEN_URL ||
+        "https://oauth.energyid.eu/oauth/token",
+      clientID: process.env.ENERGYID_CLIENT_ID,
+      clientSecret: process.env.ENERGYID_CLIENT_SECRET,
+      callbackURL:
+        process.env.ENERGYID_CALLBACK_URL ||
+        "http://localhost:3000/api/auth/callback",
+      state: true,
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        const user = {
+          id: uuidv4(),
+          accessToken,
+          refreshToken,
+          profile,
+          timestamp: new Date(),
+        };
+        return done(null, user);
+      } catch (error) {
+        return done(error);
+      }
+    },
+  );
+
+  passport.use("energyid", energyIDStrategy);
+} else {
+  console.warn(
+    "EnergyID OAuth2 credentials not detected. `/login` and `/callback` routes will respond with error.",
+  );
+}
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -74,19 +85,30 @@ router.get("/demo-login", (req, res) => {
 });
 
 // OAuth login route
-router.get(
-  "/login",
+router.get("/login", (req, res, next) => {
+  if (!hasCredentials || !energyIDStrategy) {
+    return res
+      .status(500)
+      .json({ error: "OAuth is not configured on this instance" });
+  }
   passport.authenticate("energyid", {
     scope: ["reading:interval_data", "reading:calendar"],
-  }),
-);
+  })(req, res, next);
+});
 
 // OAuth callback
 router.get(
   "/callback",
-  passport.authenticate("energyid", {
-    failureRedirect: "/login?error=auth_failed",
-  }),
+  (req, res, next) => {
+    if (!hasCredentials || !energyIDStrategy) {
+      // redirect or respond with error; user shouldn't hit this if login route is disabled
+      return res.redirect("/login?error=oauth_not_configured");
+    }
+
+    passport.authenticate("energyid", {
+      failureRedirect: "/login?error=auth_failed",
+    })(req, res, next);
+  },
   (req, res) => {
     // Successful authentication
     res.redirect("/?auth_success=true");

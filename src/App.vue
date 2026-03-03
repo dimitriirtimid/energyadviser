@@ -27,8 +27,12 @@
 
     <footer class="footer">
       <p>
-        &copy; 2026 Endura energieadviseur. Helpen u uw energieverbruik beter te
+        &copy; 2026 Endura energieadviseur. Helpt u uw energieverbruik beter te
         begrijpen en te verminderen.
+        <br />
+        <router-link to="/privacy" class="footer-link"
+          >Privacyverklaring</router-link
+        >
       </p>
     </footer>
   </div>
@@ -175,6 +179,10 @@ main {
   text-align: center;
   padding: 2rem;
   margin-top: 2rem;
+}
+
+.footer-link {
+  color: lightgray;
 }
 
 .footer p {

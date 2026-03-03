@@ -21,6 +21,12 @@ const routes = [
     component: Unauthorized,
   },
   {
+    path: "/privacy",
+    name: "Privacy",
+    // lazy-load for smaller initial bundle
+    component: () => import("../views/Privacy.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     redirect: "/",
   },

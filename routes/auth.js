@@ -16,10 +16,10 @@ if (hasCredentials) {
     {
       authorizationURL:
         process.env.ENERGYID_AUTH_URL ||
-        "https://oauth.energyid.eu/oauth/authorize",
+        "https://identity.energyid.eu/connect/authorize",
       tokenURL:
         process.env.ENERGYID_TOKEN_URL ||
-        "https://oauth.energyid.eu/oauth/token",
+        "https://identity.energyid.eu/connect/token",
       clientID: process.env.ENERGYID_CLIENT_ID,
       clientSecret: process.env.ENERGYID_CLIENT_SECRET,
       callbackURL:
